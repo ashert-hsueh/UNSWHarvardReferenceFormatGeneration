@@ -56,6 +56,8 @@ jobs:
         - name: Run Bandit security scan
           run: bandit -r UI/
 
-        - name: Run Safety vulnerability check
-          run: safety scan --file=UI/requirements.txt --full-report --key ${{ secrets.SAFETY_API_KEY }} --no-input
-
+        - name: Run Safety scan
+          uses: pyupio/safety-action@v1
+          with:
+            api-key: ${{ secrets.SAFETY_API_KEY }}
+            args: --file=UI/requirements.txt --full-report
