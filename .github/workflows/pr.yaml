@@ -57,5 +57,5 @@ jobs:
           run: bandit -r .
 
         - name: Run Safety vulnerability check
-          run: safety check --file=UI/requirements.txt --full-report
+          run: safety scan --file=UI/requirements.txt --full-report
 
