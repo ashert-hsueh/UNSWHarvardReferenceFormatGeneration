@@ -44,9 +44,9 @@
       <widget class="QTextEdit" name="bibTexBox"/>
      </item>
      <item row="1" column="1">
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="convert">
        <property name="text">
-        <string>Transfer</string>
+        <string>Convert</string>
        </property>
       </widget>
      </item>

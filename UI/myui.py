@@ -84,10 +84,10 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.bibTexBox, 1, 0, 1, 1)
 
-        self.pushButton = QPushButton(self.gridLayoutWidget)
-        self.pushButton.setObjectName("pushButton")
+        self.convert = QPushButton(self.gridLayoutWidget)
+        self.convert.setObjectName("convert")
 
-        self.gridLayout.addWidget(self.pushButton, 1, 1, 1, 1)
+        self.gridLayout.addWidget(self.convert, 1, 1, 1, 1)
 
         self.horizontalSpacer = QSpacerItem(
             40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum
@@ -132,9 +132,7 @@ class Ui_MainWindow(object):
             QCoreApplication.translate("MainWindow", "MainWindow", None)
         )
         self.msg.setText("")
-        self.pushButton.setText(
-            QCoreApplication.translate("MainWindow", "Transfer", None)
-        )
+        self.convert.setText(QCoreApplication.translate("MainWindow", "Convert", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", "BibTeX", None))
         self.label_3.setText(
             QCoreApplication.translate("MainWindow", "Harvard(UNSW)", None)
