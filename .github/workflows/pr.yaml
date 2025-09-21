@@ -3,7 +3,7 @@ name: PR Check
 on:
   pull_request:
     branches:
-      - main
+      - master
     path:
       - 'UI/**'
 
@@ -42,10 +42,10 @@ jobs:
       needs: lint
 
       steps:
-        - uses: actions/checkout@v4
+        - uses: actions/checkout@v3
 
         - name: Set up Python
-          uses: actions/setup-python@v5
+          uses: actions/setup-python@v4
           with:
             python-version: '3.11'
 
@@ -54,8 +54,10 @@ jobs:
             pip install bandit safety
 
         - name: Run Bandit security scan
-          run: bandit -r .
+          run: bandit -r UI/
 
-        - name: Run Safety vulnerability check
-          run: safety check --file=requirements.txt --full-report
-
+        - name: Run Safety scan
+          uses: pyupio/safety-action@v1
+          with:
+            api-key: ${{ secrets.SAFETY_API_KEY }}
+            args: --file=UI/requirements.txt --full-report
