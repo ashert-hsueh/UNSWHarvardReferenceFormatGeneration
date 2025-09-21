@@ -42,10 +42,10 @@ jobs:
       needs: lint
 
       steps:
-        - uses: actions/checkout@v4
+        - uses: actions/checkout@v3
 
         - name: Set up Python
-          uses: actions/setup-python@v5
+          uses: actions/setup-python@v4
           with:
             python-version: '3.11'
 
@@ -54,8 +54,8 @@ jobs:
             pip install bandit safety
 
         - name: Run Bandit security scan
-          run: bandit -r .
+          run: bandit -r UI/
 
         - name: Run Safety vulnerability check
-          run: safety scan --file=UI/requirements.txt --full-report
+          run: safety scan --file=UI/requirements.txt --full-report --key ${{ secrets.SAFETY_API_KEY }} --no-input
 
