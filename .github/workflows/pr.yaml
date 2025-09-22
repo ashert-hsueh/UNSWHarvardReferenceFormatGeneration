@@ -5,7 +5,7 @@ on:
     branches:
       - master
     path:
-      - 'UI/**'
+      - '**/*.py'
 
 jobs:
   lint:
@@ -28,13 +28,13 @@ jobs:
           pip install flake8 black isort
 
       - name: Run flake8
-        run: flake8 UI/
-
-      - name: Run black --check
-        run: black UI/ --check
+        run: flake8 .
 
       - name: Run isort
-        run: isort UI/ --check-only
+        run: isort . --check-only --settings-path . --line-length 88 --skip UI/myui.py
+
+      - name: Run black --check
+        run: black . --check
 
   security_scan:
       name: Security Scan
@@ -54,7 +54,7 @@ jobs:
             pip install bandit safety
 
         - name: Run Bandit security scan
-          run: bandit -r UI/
+          run: bandit -r .
 
         - name: Run Safety scan
           uses: pyupio/safety-action@v1
