@@ -8,6 +8,8 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
+import sys
+
 from PySide6.QtCore import (
     QCoreApplication,
     QDate,
@@ -229,8 +231,9 @@ class Ui_MainWindow(object):
                 }}
             """
             )
-        except:
-            pass
+        except (TypeError, ValueError, AttributeError) as e:
+            # Log style sheet errors but continue execution
+            print(f"Warning: Could not apply complete styling: {e}", file=sys.stderr)
 
         # Set placeholder text for input text area
         self.bibTexBox.setPlaceholderText("Paste BibTeX Here")
